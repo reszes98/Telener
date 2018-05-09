@@ -1,2 +1,3 @@
 sms 201234567 Kis_Pista Nagy_Lajos_utca_12 15 23 5
 alap 202020202 Nagy_Pista Bp_Nagy_Lajos_kiraly_utja_8/b 11 11 11
+net 06205002256 Kis_Geri Nem_Lakik_Sehol_23 320 120 11132

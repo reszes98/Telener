@@ -52,13 +52,6 @@ void teszt()//teszteli a beolvasas eredmenyet, az elso 2 ugyfelre
 		EXPECT_EQ(4530, t3[0]->sum());
 		EXPECT_EQ(6000, t3[1]->sum());
 	}ENDM
-		TEST(test4, keres)
-	{
-		elofizetestar t4;
-		t4.olvas();
-		EXPECT_NO_THROW(t4.keres("202020202"));
-		EXPECT_THROW(t4.keres("010101"), const char*);
-	}ENDM
 }
 #endif //CPORTA
 //alap: 6000, 100perc,  50 sms, 1000mb net, utána 50ft/perc 50/sms 4ft/MB

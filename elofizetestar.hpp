@@ -30,32 +30,11 @@ public:
 		else { delete p; throw("Nincs eleg hely"); }
 	}
 	~elofizetestar() { for (size_t i = 0; i < elem; i++) if(tar[i]!=NULL)delete tar[i];}
-	/*
-	void szetszed(std::string& dij, std::string& nev, std::string& cim, std::string& line, std::string& tel, 
-		unsigned int& perc, unsigned int& sms, unsigned int& net)
-	{
-		size_t first = 0, last = 0;
-		int i = 0;
-		for (last; last<line.size(); last++);
-		if (line[last] == " "&& i = 0)
-		{
-			i++;
-		}
-		if (line[last] == " "&& i = 0)
-		{
 
-		}
-		if (line[last] == " "&& i = 0)
-		{
 
-		}
-		if (line[last] == " "&& i=0)
-		{
-
-		}
-		//enumos szetvalaszto
 		
-	}*/
+		
+
 	void olvas()//filebol olvassa be az ugyfeleket
 	{
 		std::ifstream file("ugyfel.txt");
@@ -65,9 +44,29 @@ public:
 		{
 			while (std::getline(file, line))
 			{
-				std::stringstream iss(line);//helytelen
+				size_t i;
 				
-				iss>> dij >> tel >> nev >> cim >> felh_perc >> felh_sms >> felh_net;
+				int k[6] = { 0 }, l = 0;
+				//char* a = line.c_str;
+				for (i=0; i < line.size(); i++)
+				{
+					if (line[i] == ' ')
+						k[l++] = i;
+				}
+				dij = line.substr(0, k[0]);
+				tel = line.substr(k[0]+1, k[1] -k[0]-1);
+				nev = line.substr(k[1]+1, k[2] - k[1]-1);
+				cim = line.substr(k[2]+1, k[3] - k[2]-1);
+				std::string felh = line.substr(k[3], k[4] - k[3]);
+				sscanf(felh.c_str(), "%d", &felh_perc);
+				felh = line.substr(k[4], k[5] - k[4]);
+				sscanf(felh.c_str(), "%d", &felh_sms);
+				felh = line.substr(k[5], k[6] - k[5]);
+				sscanf(felh.c_str(), "%d", &felh_net);
+				
+				//std::stringstream iss(line);//helytelen
+				
+				//iss>> dij >> tel >> nev >> cim >> felh_perc >> felh_sms >> felh_net;
 				ugyfel u(tel, nev, cim, felh_perc, felh_sms, felh_net);
 				int err = 0;
 				if (dij == "sms")
