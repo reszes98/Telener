@@ -10,6 +10,7 @@
 #include "gtest_lite.h"
 #include "memtrace.h"
 #include "fgv.h"
+
 //#define CPORTA
 
 /*Hogyan kell jó formátumba menteni
