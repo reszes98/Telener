@@ -4,12 +4,11 @@
 #include "elofizetes.hpp"
 #include <iostream>
 #include <fstream>
-//template<size_t siz=100>
 class elofizetestar : public elofizetes {
 	size_t meret;
 	elofizetes* tar[100];
 	size_t elem;
-	//elofizetestar(const elofizetestar&){throw"nincs másoló"}
+	elofizetestar(const elofizetestar&);
 public:
 	elofizetestar() { elem = 0; meret = 100;}
 	size_t size() { return elem; }
@@ -53,6 +52,7 @@ public:
 					if (line[i] == ' ')
 						k[l++] = i;
 				}
+
 				dij = line.substr(0, k[0]);
 				tel = line.substr(k[0]+1, k[1] -k[0]-1);
 				nev = line.substr(k[1]+1, k[2] - k[1]-1);
@@ -64,9 +64,7 @@ public:
 				felh = line.substr(k[5], k[6] - k[5]);
 				sscanf(felh.c_str(), "%d", &felh_net);
 				
-				//std::stringstream iss(line);//helytelen
 				
-				//iss>> dij >> tel >> nev >> cim >> felh_perc >> felh_sms >> felh_net;
 				ugyfel u(tel, nev, cim, felh_perc, felh_sms, felh_net);
 				int err = 0;
 				if (dij == "sms")

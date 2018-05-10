@@ -4,7 +4,7 @@
 #include "ugyfel.hpp"
 #include <fstream>
 #include <string>
-#include <sstream>
+//#include <sstream>>
 #include "elofizetes.hpp"
 #include "elofizetestar.hpp"
 #include "gtest_lite.h"
@@ -12,7 +12,8 @@
 #include "fgv.h"
 //#define CPORTA
 
-
+/*Hogyan kell jó formátumba menteni
+*/
 #ifdef CPORTA
 void teszt()//teszteli a beolvasas eredmenyet, az elso 2 ugyfelre
 {
@@ -21,14 +22,8 @@ void teszt()//teszteli a beolvasas eredmenyet, az elso 2 ugyfelre
 	{
 		elofizetestar t1;
 		int a = t1.capacity();
-		std::cout << "teszt1" << std::endl;
-		std::cout << "merete: " << a << "elvart: 100" << std::endl;
 		EXPECT_EQ(100, a);
 		t1.olvas();
-		
-		/*elofizetestar t2;
-		std::cout << "er";
-		EXPECT_THROW(t2.olvas(), const char*);*/
 	}ENDM
 
 	TEST(test2, beolvasas)
@@ -42,7 +37,9 @@ void teszt()//teszteli a beolvasas eredmenyet, az elso 2 ugyfelre
 		EXPECT_STREQ("Nagy_Lajos_utca_12", t3[0]->g_cim().c_str());
 		EXPECT_STREQ("202020202", t3[1]->g_tel().c_str());
 		EXPECT_STREQ("Nagy_Pista", t3[1]->g_nev().c_str());
-		EXPECT_STREQ("Bp_Nagy_Lajos_kiraly_utja_8/b", t3[1]->g_cim().c_str());
+		EXPECT_STREQ("06205002256", t3[2]->g_tel().c_str());
+		EXPECT_STREQ("Kis_Geri", t3[2]->g_nev().c_str());
+		EXPECT_STREQ("Nem_Lakik_Sehol_23", t3[2]->g_cim().c_str());
 	}ENDM
 	
 	TEST(test3, sum)
@@ -51,6 +48,15 @@ void teszt()//teszteli a beolvasas eredmenyet, az elso 2 ugyfelre
 		t3.olvas();
 		EXPECT_EQ(4530, t3[0]->sum());
 		EXPECT_EQ(6000, t3[1]->sum());
+		EXPECT_EQ(8420, t3[2]->sum());
+	}ENDM
+	TEST(test4, keres)
+	{
+		elofizetestar t3;
+		t3.olvas();
+		EXPECT_STREQ("201234567", t3.keres("201234567")->g_tel().c_str());
+		EXPECT_STREQ("202020202", t3.keres("202020202")->g_tel().c_str());
+		EXPECT_STREQ("06205002256", t3.keres("06205002256")->g_tel().c_str());
 	}ENDM
 }
 #endif //CPORTA

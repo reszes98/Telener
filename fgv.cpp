@@ -29,7 +29,7 @@ void menu1()
 
 	elofizetestar t1;
 	t1.olvas();
-	std::cout << std::endl << "---------------------------------------------------" << std::endl;
+	std::cout <<"\n \n \n"<< "---------------------------------------------------" << std::endl;
 	std::cout << "Kerem valasszon!" << std::endl;
 	std::cout << std::endl << "1) ugyfelet keresek telefonszam alapjan" << std::endl;
 	std::cout << "2)Kiirom  az ugyfelek szamlait" << std::endl;
