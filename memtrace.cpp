@@ -1,9 +1,9 @@
-/*********************************
+Ôªø/*********************************
 Memoriaszivargas-detektor
 Keszitette: Peregi Tamas, BME IIT, 2011
             petamas@iit.bme.hu
 Kanari:     Szeberenyi Imre, 2013.
-VS 2012:    SzeberÈnyi Imre, 2015.,
+VS 2012:    Szeber√©nyi Imre, 2015.,
 mem_dump:   2016.
 *********************************/
 
@@ -206,10 +206,10 @@ START_NAMESPACE
 		}
 	}
 
-	/* ha nincs hiba, akkor 0-val tÈr vissza */
+	/* ha nincs hiba, akkor 0-val t√©r vissza */
 	int mem_check(void) {
 		initialize();
-		if(dying) return  2;    /* cÌmzÈsi hiba */
+		if(dying) return  2;    /* c√≠mz√©si hiba */
 
 		if(registry.next) {
 			/*szivarog*/
@@ -219,7 +219,7 @@ START_NAMESPACE
 			fprintf(fperror, "Szivargas:\n");
 			print_registry_item(registry.next);
 			registry.next = NULL;
-			return 1;           /* memÛria fogy·s */
+			return 1;           /* mem√≥ria fogy√°s */
 		}
         return 0;
 	}
@@ -317,7 +317,7 @@ START_NAMESPACE
 END_NAMESPACE
 
 /*******************************************************************/
-/* C-stÌlus˙ memÛriakezelÈs */
+/* C-st√≠lus√∫ mem√≥riakezel√©s */
 /*******************************************************************/
 
 #ifdef MEMTRACE_C
@@ -411,7 +411,7 @@ END_NAMESPACE
 #endif/*MEMTRACE_C*/
 
 /*******************************************************************/
-/* C++-stÌlus˙ memÛriakezelÈs */
+/* C++-st√≠lus√∫ mem√≥riakezel√©s */
 /*******************************************************************/
 
 #ifdef MEMTRACE_CPP
@@ -428,7 +428,7 @@ START_NAMESPACE
 
 	void set_delete_call(int line, const char * file) {
 		initialize();
-		delete_call=pack(0,"",line,file); /*func ÈrtÈke lÈnyegtelen, majd fel¸lÌrjuk*/
+		delete_call=pack(0,"",line,file); /*func √©rt√©ke l√©nyegtelen, majd fel√ºl√≠rjuk*/
 		delete_called = TRUE;
 	}
 
@@ -485,7 +485,7 @@ void operator delete[](void * p) THROW_NOTHING {
 }
 
 
-/* Visual C++ 2012 miatt kell, mert h·klis, hogy nincs megfelelı delete, b·r senki sem haszn·lja */
+/* Visual C++ 2012 miatt kell, mert h√°klis, hogy nincs megfelel≈ë delete, b√°r senki sem haszn√°lja */
 void operator delete(void * p, int, const char *) THROW_NOTHING {
 	memtrace::traced_delete(p,FDELETE);
 }

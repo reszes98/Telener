@@ -1,4 +1,4 @@
-
+﻿
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -6,10 +6,12 @@
 #include "elofizetes.hpp"
 #include "elofizetestar.hpp"
 #include "fgv.h"
-
+/**Menü függvény.
+*Visszatérés, és paraméter nélküli.
+*A menü függvények első példánya, a többit ez a függvény fogja hívni.*/
 void menu()
 {
-	std::cout << "Udv a Telener rendszer�ben" << std::endl << "Mit szeretnel csinalni?" << std::endl;
+	std::cout << "Udv a Telener rendszereben" << std::endl << "Mit szeretnel csinalni?" << std::endl;
 	std::cout << "1) Beolvasni" << std::endl << "0) Kilepni" << std::endl;
 	std::cout << "Kerem Valasszon: " << std::endl;
 	int a;
@@ -23,7 +25,8 @@ void menu()
 
 }
 
-
+/**Menu1 függvény.
+*Visszatérés, és paraméter nélküli.*/
 void menu1()
 {
 
@@ -53,7 +56,7 @@ void menu1()
 		default: std::cout << "Hibas valasz" << std::endl;
 			break;
 		}
-		std::cout << std::endl << "---------------------------------------------------" << std::endl;
+		std::cout << "\n\n\n---------------------------------------------------" << std::endl;
 		std::cout << "Kerem valasszon!" << std::endl;
 		std::cout << std::endl << "1) ugyfelet keresek telefonszam alapjan" << std::endl;
 		std::cout << "2)Kiirom  az ugyfelek szamlait" << std::endl;
@@ -61,11 +64,15 @@ void menu1()
 		std::cout << "---------------------------------------------------" << std::endl;
 	}
 }
+/**Menu2 függvény.
+*Visszatérés nélküli.
+@param előfizetés *
+*/
 void menu2(elofizetes* e)
 {
 	if (e == NULL)
 	{
-		std::cout << std::endl << "---------------------------------------------------" << std::endl;
+		std::cout << std::endl << "\n---------------------------------------------------" << std::endl;
 		std::cout << "Nincs ilyen talalat" << std::endl;
 		std::cout << "---------------------------------------------------" << std::endl;
 		return;
@@ -73,10 +80,10 @@ void menu2(elofizetes* e)
 	else
 	{
 		e->kiir();
-		std::cout << std::endl << "---------------------------------------------------" << std::endl;
+		std::cout << "\n\n\n---------------------------------------------------" << std::endl;
 		std::cout << " Kerem valasszon" << std::endl;
 		std::cout << "Meg szeretnem nezni masik tarifacsomaggal:" << std::endl;
-		std::cout << "1)alap tarifaval" << std::endl << "2)sms tarifaval " << std::endl << "3) net tarifaval" << std::endl;
+		std::cout << "1)alap tarifaval \n2)sms tarifaval \n3) net tarifaval" << std::endl;
 		std::cout << "0) Kilepek" << std::endl;
 		std::cout << "---------------------------------------------------" << std::endl;
 		int a;
@@ -97,7 +104,7 @@ void menu2(elofizetes* e)
 				temp.kiir();
 				break;
 
-				//alap: 6000, 100perc,  50 sms, 1000mb net, ut�na 50ft/perc 50/sms 4ft/MB
+				//alap: 6000, 100perc,  50 sms, 1000mb net, utána 50ft/perc 50/sms 4ft/MB
 
 			}
 			case 2:
@@ -112,7 +119,7 @@ void menu2(elofizetes* e)
 				temp.s_netdij(6);
 				temp.kiir();
 				break;
-				//sms:4500Ft, 45 perc, 100 sms, 0mb, ut�na,  55/perc 30/sms 6/MB
+				//sms:4500Ft, 45 perc, 100 sms, 0mb, utána,  55/perc 30/sms 6/MB
 			}
 			case 3:
 			{
@@ -127,7 +134,7 @@ void menu2(elofizetes* e)
 				temp.kiir();
 				break;
 			}
-			//net 6000  0 perc, 0 sms,korl�tlan net, ut�na 55/perc 55/sms	0mb/ft
+			//net 6000  0 perc, 0 sms,korlátlan net, utána 55/perc 55/sms	0mb/ft
 			default:
 			{
 				std::cout << "Hibas valasz" << std::endl;
@@ -135,10 +142,10 @@ void menu2(elofizetes* e)
 			}
 			
 			}
-			std::cout << std::endl << "---------------------------------------------------" << std::endl;
+			std::cout <<"\n\n\n---------------------------------------------------" << std::endl;
 			std::cout << " Kerem valasszon" << std::endl;
 			std::cout << "Meg szeretnem nezni masik tarifacsomaggal:" << std::endl;
-			std::cout << "1)alap tarifaval" << std::endl << "2)sms tarifaval " << std::endl << "3) net tarifaval" << std::endl;
+			std::cout << "1)alap tarifaval \n2)sms tarifaval \n3) net tarifaval" << std::endl;
 			std::cout << "0) Kilepek" << std::endl;
 			std::cout << "---------------------------------------------------" << std::endl;
 		}

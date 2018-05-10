@@ -1,92 +1,104 @@
-#ifndef UGYFEL
+ï»¿#ifndef UGYFEL
 #define UGYFEL
 
 
 #include <string>
 /**
-  @class Ügyfél. Itt tároljuk az ügyfelek adatait.
+  @class ugyfel, itt tÃ¡roljuk az Ã¼gyfelek adatait.
  */
 class ugyfel{
-	/**Privát változó. Telefonszámot tárolunk benne*/
+	/**PrivÃ¡t vÃ¡ltozÃ³. TelefonszÃ¡mot tÃ¡rolunk benne*/
 	std::string tel;
-	/**Privát változó. Nevet tárolunk benne*/
+	/**PrivÃ¡t vÃ¡ltozÃ³. Nevet tÃ¡rolunk benne*/
 	std::string nev;
-	/**Privát változó. Címet tárolunk benne*/
+	/**PrivÃ¡t vÃ¡ltozÃ³. CÃ­met tÃ¡rolunk benne*/
 	std::string cim;
-	/**Privát változó. Felhasznált percek számát tárolunk benne*/
+	/**PrivÃ¡t vÃ¡ltozÃ³. FelhasznÃ¡lt percek szÃ¡mÃ¡t tÃ¡rolunk benne*/
 	unsigned int felh_perc;
-	/**Privát változó. Felhasznált sms-ek számát tárolunk benne*/
+	/**PrivÃ¡t vÃ¡ltozÃ³. FelhasznÃ¡lt sms-ek szÃ¡mÃ¡t tÃ¡rolunk benne*/
 	unsigned int felh_sms;
-	/**Privát változó. Felhasznált Megabyte-ok számát tárolunk benne*/
+	/**PrivÃ¡t vÃ¡ltozÃ³. FelhasznÃ¡lt Megabyte-ok szÃ¡mÃ¡t tÃ¡rolunk benne*/
 	unsigned int felh_net;
 public:
 
 	/**
 	 Konstruktor.
-	 Adattal és nélküle is meg lehet hívni.
+	 Adattal Ã©s nÃ©lkÃ¼le is meg lehet hÃ­vni.
 	 */
 	ugyfel(std::string tel=" ", std::string nev=" ", std::string cim=" ", unsigned int felh_perc=0, unsigned int felh_sms=0, unsigned int felh_net=0)
 		:tel(tel),  nev(nev), cim(cim), felh_perc(felh_perc),  felh_sms(felh_sms), felh_net(felh_net) {}
-	/**Destruktor. Szabvány paraméter nélküli Destruktor*/
+	/**Destruktor. SzabvÃ¡ny paramÃ©ter nÃ©lkÃ¼li Destruktor*/
 	~ugyfel() {}
 
-	/**String& visszatérésû függvény, nincs paramétere.
-	@return Ügyfél telefonszáma.
+	/**g_tel fÃ¼ggvÃ©ny.
+	*String& visszatÃ©rÃ©sÅ± fÃ¼ggvÃ©ny, nincs paramÃ©tere.
+	@return ÃœgyfÃ©l telefonszÃ¡ma.
 	*/
 	std::string& g_tel() { return tel; }
 
-	/**String& visszatérésû függvény, nincs paramétere.
-	@return Ügyfél neve.
+	/**g_nev fÃ¼ggvÃ©ny.
+	*String& visszatÃ©rÃ©sÅ± fÃ¼ggvÃ©ny, nincs paramÃ©tere.
+	@return ÃœgyfÃ©l neve.
 	*/
 	std::string& g_nev() { return nev; }
 
-	/**String& visszatérésû függvény, nincs paramétere.
-	@return Ügyfél címe.
+	/**g_cim fÃ¼ggvÃ©ny.
+	*String& visszatÃ©rÃ©sÅ± fÃ¼ggvÃ©ny, nincs paramÃ©tere.
+	@return ÃœgyfÃ©l cÃ­me.
 	*/
 	std::string& g_cim() { return cim; }
 
-	/** Unsigend int visszatérésû függvény, nincs paramétere.
-	@return ügyfél felhasznált perceinek száma.
+	/**g_felhperc fÃ¼ggvÃ©ny.
+	* Unsigend int visszatÃ©rÃ©sÅ± fÃ¼ggvÃ©ny, nincs paramÃ©tere.
+	@return Ã¼gyfÃ©l felhasznÃ¡lt perceinek szÃ¡ma.
 	*/
 	unsigned int g_felhperc() { return felh_perc; }
 
-	/** Unsigend int visszatérésû függvény, nincs paramétere.
-	@return ügyfél felhasznált smseinek száma.
+	/**g_felhsms fÃ¼ggvÃ©ny.
+	* Unsigend int visszatÃ©rÃ©sÅ± fÃ¼ggvÃ©ny, nincs paramÃ©tere.
+	@return Ã¼gyfÃ©l felhasznÃ¡lt smseinek szÃ¡ma.
 	*/
 	unsigned int g_felhsms() { return felh_sms; }
 
-	/** Unsigend int visszatérésû függvény, nincs paramétere.
-	@return ügyfél felhasznált Megabyte-jainak száma.
+	/**g_felhnet fÃ¼ggvÃ©ny.
+	* Unsigend int visszatÃ©rÃ©sÅ± fÃ¼ggvÃ©ny, nincs paramÃ©tere.
+	@return Ã¼gyfÃ©l felhasznÃ¡lt Megabyte-jainak szÃ¡ma.
 	*/
 	unsigned int g_felhnet() { return felh_net; }
 
-	/**void visszatérésû függvény, string paraméterrel.
-	Az ügyfél telefonszámát állíthatjuk így be
+	/**s_tel fÃ¼ggvÃ©ny.
+	*void visszatÃ©rÃ©sÅ± fÃ¼ggvÃ©ny, string paramÃ©terrel.
+	Az Ã¼gyfÃ©l telefonszÃ¡mÃ¡t Ã¡llÃ­thatjuk Ã­gy be
 	*/
 	void s_tel(std::string p) { tel = p; }
 
-	/**void visszatérésû függvény, string paraméterrel.
-	Az ügyfél nevét állíthatjuk így be
+	/**s_nev fÃ¼ggvÃ©ny.
+	*void visszatÃ©rÃ©sÅ± fÃ¼ggvÃ©ny, string paramÃ©terrel.
+	Az Ã¼gyfÃ©l nevÃ©t Ã¡llÃ­thatjuk Ã­gy be
 	*/
 	void s_nev(std::string p) { nev = p; }
 
-	/**void visszatérésû függvény, string paraméterrel.
-	Az ügyfél címét állíthatjuk így be
+	/**s_cim fÃ¼ggvÃ©ny.
+	*void visszatÃ©rÃ©sÅ± fÃ¼ggvÃ©ny, string paramÃ©terrel.
+	Az Ã¼gyfÃ©l cÃ­mÃ©t Ã¡llÃ­thatjuk Ã­gy be
 	*/
 	void s_cim(std::string p) { cim = p; }
 
-	/**void visszatérésû függvény, string paraméterrel.
-	Az ügyfél felhasznált perceinek számát állíthatjuk így be
+	/**s_felhperc fÃ¼ggvÃ©ny.
+	*void visszatÃ©rÃ©sÅ± fÃ¼ggvÃ©ny, string paramÃ©terrel.
+	Az Ã¼gyfÃ©l felhasznÃ¡lt perceinek szÃ¡mÃ¡t Ã¡llÃ­thatjuk Ã­gy be
 	*/
 	void s_felhperc(unsigned int p) { felh_perc = p; }
 
-	/**void visszatérésû függvény, string paraméterrel.
-	Az ügyfél felhasznált sms-einek a számát állíthatjuk így be
+	/**s_felhsms fÃ¼ggvÃ©ny.
+	*void visszatÃ©rÃ©sÅ± fÃ¼ggvÃ©ny, string paramÃ©terrel.
+	Az Ã¼gyfÃ©l felhasznÃ¡lt sms-einek a szÃ¡mÃ¡t Ã¡llÃ­thatjuk Ã­gy be
 	*/
 	void s_felhsms(unsigned int p) { felh_sms = p; }
 
-	/**void visszatérésû függvény, string paraméterrel.
-	Az ugyfel felhasznált Megabyte-jainkak számát állíthatjuk így be
+	/**s_felhnet fÃ¼ggvÃ©ny.
+	*void visszatÃ©rÃ©sÅ± fÃ¼ggvÃ©ny, string paramÃ©terrel.
+	Az ugyfel felhasznÃ¡lt Megabyte-jainkak szÃ¡mÃ¡t Ã¡llÃ­thatjuk Ã­gy be
 	*/
 	void s_felhnet(unsigned int p) { felh_net = p; }
 };

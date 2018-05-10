@@ -1,4 +1,4 @@
-#ifndef FGV_H
+﻿#ifndef FGV_H
 #define FGV_H
 #include "elofizetes.hpp"
 void menu();

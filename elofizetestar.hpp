@@ -1,18 +1,40 @@
-#ifndef ELOFIZETESTAR
+﻿#ifndef ELOFIZETESTAR
 #define ELOFIZETESTAR
 #include <string>
 #include "elofizetes.hpp"
 #include <iostream>
 #include <fstream>
+
+/**
+@class elofizetestar, az előfizetéseket tárolja egy fix méretű tömbbe pointerelve.
+*/
 class elofizetestar : public elofizetes {
+	/**Privát változó. tar változó méretét tároljuk benne*/
 	size_t meret;
+
+	/**Privát változó. Ebben tároljuk az előfizetéseket pointer formájában, fix méretű.*/
 	elofizetes* tar[100];
+
+	/**Privát változó. Az aktuálisan felhasznált méretet tároljuk.*/
 	size_t elem;
+
+	/**Másoló konstruktor. TILTVA, a tömb miatt nem lehetséges implicit másolása.*/
 	elofizetestar(const elofizetestar&);
 public:
+	/**Default konstruktor. Adattag nélkül hívható, az adatokat később töltjük bele.*/
 	elofizetestar() { elem = 0; meret = 100;}
+
+	/**size függvény.
+	*size_t  visszatérésű függvény, nincs paramétere.
+		@return aktuálisan felhasznált méret.*/
 	size_t size() { return elem; }
+
+	/**capacity függvény
+	*size_t  visszatérésű, nincs paramétere.
+	@return tároló mérete.*/
 	size_t capacity() { return meret; }
+
+	/**operátor[] átdefiniálás. Tömb címzése kivülről*/
 	elofizetes* operator[](unsigned int idx)
 	{ 
 		if (idx > meret)
@@ -20,6 +42,10 @@ public:
 		else 
 			return tar[idx]; 
 	}
+	/**add függvény.
+	Visszatérés nélküli.
+	@param elofizetes*
+	* a tömbhöz hozzáadd elofizetes elemet, amennyiben van hely, ha nincs jelez.*/
 	void add(elofizetes* p) 
 	{
 		if (elem < meret)
@@ -33,7 +59,9 @@ public:
 
 		
 		
-
+	/** olvas függvény.
+	*  visszatérés nélküli függvény.
+	* fájlból olvas adatokat be, az add függvény segítségével egyből hozzá is adja a tömbhöz.*/
 	void olvas()//filebol olvassa be az ugyfeleket
 	{
 		std::ifstream file("ugyfel.txt");
@@ -69,7 +97,7 @@ public:
 				int err = 0;
 				if (dij == "sms")
 				{
-					//sms:4500Ft, 45 perc, 100 sms, 0mb, ut�na,  55/perc 30/sms 6/MB
+					//sms:4500Ft, 45 perc, 100 sms, 0mb, utána,  55/perc 30/sms 6/MB
 					tarifa t(4500, 45, 100, 0, 55, 30, 6);
 					add(new elofizetes(u, t));
 
@@ -77,14 +105,14 @@ public:
 				else err++;
 				if (dij == "alap")
 				{
-					//alap: 6000, 100perc,  50 sms, 1000mb net, ut�na 50ft/perc 50/sms 4ft/MB
+					//alap: 6000, 100perc,  50 sms, 1000mb net, utána 50ft/perc 50/sms 4ft/MB
 					tarifa t(6000, 100, 50, 1000, 50, 50, 4);
 					add(new elofizetes(u, t));
 				}
 				else err++;
 				if (dij == "net")
 				{
-					//net 6000  0 perc, 0 sms,korl�tlan net, ut�na 55/perc 55/sms	0mb/ft
+					//net 6000  0 perc, 0 sms,korlátlan net, utána 55/perc 55/sms	0mb/ft
 					tarifa t(6000, 0, 0, 0, 55, 55, 0);
 					add(new elofizetes(u, t));
 				}
@@ -98,7 +126,11 @@ public:
 
 	}
 
-
+	/**keres függvény.
+	@param string
+	@return elofizetes*
+	*a stringként kapott telefonszámot kikeresi a számlák közül, és kiírja, ha talált ilyet.
+	*/
 	elofizetes* keres(std::string keresett)// a lancolt listaban keres telefonszam alapjan
 	{
 		
@@ -113,7 +145,8 @@ public:
 		return NULL;
 	}
 
-
+	/**mindki függvény.
+	*Az összes a tárban lévő ügyfelet kiírja a konzolra.*/
 	void mindki()
 	{
 		for (size_t i = 0; i < elem; i++)

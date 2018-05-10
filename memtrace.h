@@ -1,9 +1,9 @@
-/*********************************
+Ôªø/*********************************
 Memoriaszivargas-detektor
 Keszitette: Peregi Tamas, BME IIT, 2011
             petamas@iit.bme.hu
 Kanari:     Szeberenyi Imre, 2013.,
-VS 2012:    SzeberÈnyi Imre, 2015.,
+VS 2012:    Szeber√©nyi Imre, 2015.,
 mem_dump:   2016.
 inclue-ok:  2017.
 *********************************/
@@ -13,7 +13,7 @@ inclue-ok:  2017.
 
 #if defined(MEMTRACE)
 
-/*ha defini·lva van, akkor a hibakat ebbe a fajlba Ìrja, egyÈbkent stderr-re*/
+/*ha defini√°lva van, akkor a hibakat ebbe a fajlba √≠rja, egy√©bkent stderr-re*/
 //#define MEMTRACE_ERRFILE MEMTRACE.ERR
 
 /*ha definialva van, akkor futas kozben lancolt listat epit. Javasolt a hasznalata*/
@@ -131,9 +131,9 @@ END_NAMESPACE
 #include <stdlib.h>
 #ifdef __cplusplus
 	#include <iostream>
-/* ide gy˚jtj¸k a nemtrace-vel ˆsszeakadÛ headereket, hogy elıbb legyenek */
+/* ide gy≈±jtj√ºk a nemtrace-vel √∂sszeakad√≥ headereket, hogy el≈ëbb legyenek */
 
-	#include <fstream>  // VS 2013 headerjÈben van deleted definiciÛ
+	#include <fstream>  // VS 2013 headerj√©ben van deleted definici√≥
 	#include <vector>
 	#include <algorithm>
 #endif
@@ -183,7 +183,7 @@ void * operator new[](size_t size) THROW_BADALLOC;
 void operator delete(void * p)  THROW_NOTHING;
 void operator delete[](void * p) THROW_NOTHING;
 
-/* Visual C++ 2012 miatt kell, mert h·klis, hogy nincs megfelelı delete, b·r senki sem haszn·lja */
+/* Visual C++ 2012 miatt kell, mert h√°klis, hogy nincs megfelel≈ë delete, b√°r senki sem haszn√°lja */
 void operator delete(void *p, int, const char *) THROW_NOTHING;
 void operator delete[](void *p, int, const char *) THROW_NOTHING;
 

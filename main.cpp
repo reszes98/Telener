@@ -1,4 +1,4 @@
-
+﻿
 #include <iostream>
 #include "tarifa.hpp"
 #include "ugyfel.hpp"
@@ -13,9 +13,11 @@
 
 //#define CPORTA
 
-/*Hogyan kell j� form�tumba menteni
-*/
+
 #ifdef CPORTA
+/**Tesztelő függvény.
+*Visszatérés és paraméter nélküli.
+*Teszteli a beolvasást, a számítást és a kereső függvényt*/
 void teszt()//teszteli a beolvasas eredmenyet, az elso 2 ugyfelre
 {
 	//meret teszt
@@ -61,9 +63,9 @@ void teszt()//teszteli a beolvasas eredmenyet, az elso 2 ugyfelre
 	}ENDM
 }
 #endif //CPORTA
-//alap: 6000, 100perc,  50 sms, 1000mb net, ut�na 50ft/perc 50/sms 4ft/MB
-//net 6000  0 perc, 0 sms,korl�tlan net, ut�na 55/perc 55/sms	0mb/ft
-//sms:4500Ft, 45 perc, 100 sms, 0mb, ut�na,  55/perc 30/sms 6/MB
+//alap: 6000, 100perc,  50 sms, 1000mb net, utána 50ft/perc 50/sms 4ft/MB
+//net 6000  0 perc, 0 sms,korlátlan net, utána 55/perc 55/sms	0mb/ft
+//sms:4500Ft, 45 perc, 100 sms, 0mb, utána,  55/perc 30/sms 6/MB
 #ifdef CPORTA
 int main()
 {
