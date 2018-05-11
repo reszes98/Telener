@@ -11,7 +11,7 @@
 #include "memtrace.h"
 #include "fgv.h"
 
-//#define CPORTA
+#define CPORTA
 
 
 #ifdef CPORTA
@@ -23,15 +23,17 @@ void teszt()//teszteli a beolvasas eredmenyet, az elso 2 ugyfelre
 	//meret teszt
 	TEST(test1, letrehoz)
 	{
-		elofizetestar t1;
+		elofizetestar t1(1);
 		int a = t1.capacity();
-		EXPECT_EQ(100, a);
+		EXPECT_EQ(1, a);
 		t1.olvas();
+		a = t1.capacity();
+		EXPECT_EQ(4, a);
 	}ENDM
 
 	TEST(test2, beolvasas)
 	{
-		elofizetestar t3;
+		elofizetestar t3(1);
 		t3.olvas();
 		std::string a;
 		a= t3[0]->g_tel();
@@ -47,7 +49,7 @@ void teszt()//teszteli a beolvasas eredmenyet, az elso 2 ugyfelre
 	
 	TEST(test3, sum)
 	{
-		elofizetestar t3;
+		elofizetestar t3(1);
 		t3.olvas();
 		EXPECT_EQ(4530, t3[0]->sum());
 		EXPECT_EQ(6000, t3[1]->sum());
@@ -55,7 +57,7 @@ void teszt()//teszteli a beolvasas eredmenyet, az elso 2 ugyfelre
 	}ENDM
 	TEST(test4, keres)
 	{
-		elofizetestar t3;
+		elofizetestar t3(1);
 		t3.olvas();
 		EXPECT_STREQ("201234567", t3.keres("201234567")->g_tel().c_str());
 		EXPECT_STREQ("202020202", t3.keres("202020202")->g_tel().c_str());

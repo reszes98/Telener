@@ -7,6 +7,7 @@
 /**
 @class elofizetes, a tarifa és ügyfél osztályok örökléséből jött létre. Itt rendszerezzük az adatokat.
 */
+// tagváltozóként
 class elofizetes :public tarifa, public ugyfel {
 public:
 	/**

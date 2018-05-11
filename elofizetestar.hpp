@@ -8,12 +8,12 @@
 /**
 @class elofizetestar, az előfizetéseket tárolja egy fix méretű tömbbe pointerelve.
 */
-class elofizetestar : public elofizetes {
+class elofizetestar{
 	/**Privát változó. tar változó méretét tároljuk benne*/
 	size_t meret;
-
+	//ne legyen fix méretű , dinamikus
 	/**Privát változó. Ebben tároljuk az előfizetéseket pointer formájában, fix méretű.*/
-	elofizetes* tar[100];
+	elofizetes** tar;
 
 	/**Privát változó. Az aktuálisan felhasznált méretet tároljuk.*/
 	size_t elem;
@@ -22,7 +22,7 @@ class elofizetestar : public elofizetes {
 	elofizetestar(const elofizetestar&);
 public:
 	/**Default konstruktor. Adattag nélkül hívható, az adatokat később töltjük bele.*/
-	elofizetestar() { elem = 0; meret = 100;}
+	elofizetestar(size_t meret) :meret(meret) { elem = 0; tar = new elofizetes*[meret]; }
 
 	/**size függvény.
 	*size_t  visszatérésű függvény, nincs paramétere.
@@ -46,15 +46,30 @@ public:
 	Visszatérés nélküli.
 	@param elofizetes*
 	* a tömbhöz hozzáadd elofizetes elemet, amennyiben van hely, ha nincs jelez.*/
-	void add(elofizetes* p) 
+	void add(elofizetes *p) 
 	{
 		if (elem < meret)
 		{
-			tar[elem] = p; elem += 1;
+			tar[elem++] = p; 
 		}
-		else { delete p; throw("Nincs eleg hely"); }
+		else 
+		{ 
+			elofizetes**temp = new elofizetes*[2 * meret];
+			
+			for(unsigned int i=0; i<meret;i++)
+				temp[i] = tar[i];
+			delete[] tar;
+			meret = 2 * meret;
+			tar = temp;
+			tar[elem++] = p;
+
+		}
 	}
-	~elofizetestar() { for (size_t i = 0; i < elem; i++) if(tar[i]!=NULL)delete tar[i];}
+	~elofizetestar() {
+		for (size_t i = 0; i < elem; i++)
+			delete tar[i]; 
+		delete[] tar;
+	}
 
 
 		

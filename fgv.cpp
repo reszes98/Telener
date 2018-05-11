@@ -30,7 +30,7 @@ void menu()
 void menu1()
 {
 
-	elofizetestar t1;
+	elofizetestar t1(1);
 	t1.olvas();
 	std::cout <<"\n \n \n"<< "---------------------------------------------------" << std::endl;
 	std::cout << "Kerem valasszon!" << std::endl;
