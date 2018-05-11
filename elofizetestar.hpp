@@ -151,7 +151,7 @@ public:
 		
 		for (size_t i = 0; i < elem; i++)
 		{
-			if (!keresett.compare(tar[i]->g_tel()))
+			if (!keresett.compare(tar[i]->get_u().g_tel()))
 			{
 				
 				return tar[i];

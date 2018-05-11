@@ -94,13 +94,13 @@ void menu2(elofizetes* e)
 			case 1:
 			{
 				elofizetes temp = (*e);
-				temp.s_dij(6000);
-				temp.s_perc(100);
-				temp.s_sms(50);
-				temp.s_net(1000);
-				temp.s_percdij(50);
-				temp.s_smsdij(50);
-				temp.s_netdij(4);
+				temp.get_t().s_dij(6000);
+				temp.get_t().s_perc(100);
+				temp.get_t().s_sms(50);
+				temp.get_t().s_net(1000);
+				temp.get_t().s_percdij(50);
+				temp.get_t().s_smsdij(50);
+				temp.get_t().s_netdij(4);
 				temp.kiir();
 				break;
 
@@ -110,13 +110,13 @@ void menu2(elofizetes* e)
 			case 2:
 			{
 				elofizetes temp = *e;
-				temp.s_dij(4500);
-				temp.s_perc(45);
-				temp.s_sms(100);
-				temp.s_net(0);
-				temp.s_percdij(55);
-				temp.s_smsdij(30);
-				temp.s_netdij(6);
+				temp.get_t().s_dij(4500);
+				temp.get_t().s_perc(45);
+				temp.get_t().s_sms(100);
+				temp.get_t().s_net(0);
+				temp.get_t().s_percdij(55);
+				temp.get_t().s_smsdij(30);
+				temp.get_t().s_netdij(6);
 				temp.kiir();
 				break;
 				//sms:4500Ft, 45 perc, 100 sms, 0mb, utána,  55/perc 30/sms 6/MB
@@ -124,13 +124,13 @@ void menu2(elofizetes* e)
 			case 3:
 			{
 				elofizetes temp = *e;
-				temp.s_dij(6000);
-				temp.s_perc(0);
-				temp.s_sms(0);
-				temp.s_net(0);
-				temp.s_percdij(55);
-				temp.s_smsdij(55);
-				temp.s_netdij(0);
+				temp.get_t().s_dij(6000);
+				temp.get_t().s_perc(0);
+				temp.get_t().s_sms(0);
+				temp.get_t().s_net(0);
+				temp.get_t().s_percdij(55);
+				temp.get_t().s_smsdij(55);
+				temp.get_t().s_netdij(0);
 				temp.kiir();
 				break;
 			}

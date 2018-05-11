@@ -36,15 +36,15 @@ void teszt()//teszteli a beolvasas eredmenyet, az elso 2 ugyfelre
 		elofizetestar t3(1);
 		t3.olvas();
 		std::string a;
-		a= t3[0]->g_tel();
-		EXPECT_STREQ("201234567", t3[0]->g_tel().c_str());
-		EXPECT_STREQ("Kis_Pista", t3[0]->g_nev().c_str());
-		EXPECT_STREQ("Nagy_Lajos_utca_12", t3[0]->g_cim().c_str());
-		EXPECT_STREQ("202020202", t3[1]->g_tel().c_str());
-		EXPECT_STREQ("Nagy_Pista", t3[1]->g_nev().c_str());
-		EXPECT_STREQ("06205002256", t3[2]->g_tel().c_str());
-		EXPECT_STREQ("Kis_Geri", t3[2]->g_nev().c_str());
-		EXPECT_STREQ("Nem_Lakik_Sehol_23", t3[2]->g_cim().c_str());
+		a= t3[0]->get_u().g_tel();
+		EXPECT_STREQ("201234567", t3[0]->get_u().g_tel().c_str());
+		EXPECT_STREQ("Kis_Pista", t3[0]->get_u().g_nev().c_str());
+		EXPECT_STREQ("Nagy_Lajos_utca_12", t3[0]->get_u().g_cim().c_str());
+		EXPECT_STREQ("202020202", t3[1]->get_u().g_tel().c_str());
+		EXPECT_STREQ("Nagy_Pista", t3[1]->get_u().g_nev().c_str());
+		EXPECT_STREQ("06205002256", t3[2]->get_u().g_tel().c_str());
+		EXPECT_STREQ("Kis_Geri", t3[2]->get_u().g_nev().c_str());
+		EXPECT_STREQ("Nem_Lakik_Sehol_23", t3[2]->get_u().g_cim().c_str());
 	}ENDM
 	
 	TEST(test3, sum)
@@ -59,9 +59,9 @@ void teszt()//teszteli a beolvasas eredmenyet, az elso 2 ugyfelre
 	{
 		elofizetestar t3(1);
 		t3.olvas();
-		EXPECT_STREQ("201234567", t3.keres("201234567")->g_tel().c_str());
-		EXPECT_STREQ("202020202", t3.keres("202020202")->g_tel().c_str());
-		EXPECT_STREQ("06205002256", t3.keres("06205002256")->g_tel().c_str());
+		EXPECT_STREQ("201234567", t3.keres("201234567")->get_u().g_tel().c_str());
+		EXPECT_STREQ("202020202", t3.keres("202020202")->get_u().g_tel().c_str());
+		EXPECT_STREQ("06205002256", t3.keres("06205002256")->get_u().g_tel().c_str());
 	}ENDM
 }
 #endif //CPORTA
