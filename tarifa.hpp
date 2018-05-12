@@ -2,7 +2,7 @@
 #define TARIFA
 
 /**
-	@class tarifa, a tarifák adatait tároljuk itt.
+* A tarifák adatait tároljuk itt.
 */
 class tarifa  {
 	 /**Privát változó. A számla alapdíját tároljuk benne.*/
@@ -35,93 +35,86 @@ public:
 	*/
 	~tarifa() { }
 
-	/**s_dij függvény
-	@param unsigned int
-	*Beállítja az alapdíjat.
+	/**
+	*@brief Beállítja az alapdíjat.
 	*visszatérés nélküli.
 	*/
 	void s_dij(unsigned int p) { alap_dij = p; }
 
-	/**s_sms függvény
-	@param unsigned int
-	*Beállítja az ingyenes smsek számát.
+	/**
+	*@brief Beállítja az ingyenes smsek számát.
 	*visszatérés nélküli.
 	*/
 	void s_sms(unsigned int p) { alap_sms = p; }
 
-	/**s_net függvény
-	@param unsigned int
-	*Beállítja az ingyenes Megabyte-ok számát.
+	/**
+	*@brief Beállítja az ingyenes Megabyte-ok számát.
 	*visszatérés nélküli.
 	*/
 	void s_net(unsigned int p) { alap_net = p; }
 
-	/**s_perc függvény
-	@param unsigned int
-	*Beállítja az ingyenes percek számát.
+	/**
+	*@brief Beállítja az ingyenes percek számát.
 	*visszatérés nélküli.
 	*/
 	void s_perc(unsigned int p) { alap_perc = p; }
 
-	/**s_smsdij függvény
-	@param unsigned int
-	*Beállítja az sms díját.
+	/**
+	*@brief Beállítja az sms díját.
 	*visszatérés nélküli.
 	*/
 	void s_smsdij(unsigned int p) { sms_dij = p; }
 
-	/**s_netdij függvény
-	@param unsigned int
-	*Beállítja az internet díját.
+	/**
+	*@brief Beállítja az internet díját.
 	*visszatérés nélküli.
 	*/
 	void s_netdij(unsigned int p) { net_dij = p; }
 
-	/**s_percdij függvény
-	@param unsigned int
-	*Beállítja az sms díját.
+	/**
+	*@brief Beállítja az sms díját.
 	*visszatérés nélküli.
 	*/
 	void s_percdij(unsigned int p) { perc_dij = p; }
 
-	/**g_dij függvény.
-	*unsigned int  visszatérésű, nincs paramétere.
+	/**
+	*nincs paramétere.
 	@return tarifa alapdíja.
 	*/
 	unsigned int g_dij() { return alap_dij; }
 
-	/**g_sms függvény.
-	*unsigned int  visszatérésű, nincs paramétere.
+	/**
+	*nincs paramétere.
 	@return ingyenes sms.
 	*/
 	unsigned int g_sms() { return alap_sms; }
 
-	/**g_net függvény.
-	*unsigned int  visszatérésű, nincs paramétere.
+	/**
+	* nincs paramétere.
 	@return ingyenes Megabyte-ok.
 	*/
 	unsigned int g_net() { return alap_net; }
 
-	/**g_perc függvény.
+	/**
 	*unsigned int  visszatérésű, nincs paramétere.
 	@return ingyenes percek.
 	*/
 	unsigned int g_perc() { return alap_perc; }
 
-	/**g_smsdij függvény.
+	/**
 	*unsigned int  visszatérésű, nincs paramétere.
 	@return smsdíj.
 	*/
 	unsigned int g_smsdij() { return sms_dij; }
 
-	/**g_netdij függvény.
-	*unsigned int  visszatérésű, nincs paramétere.
+	/**
+	*nincs paramétere.
 	@return netdíj.
 	*/
 	unsigned int g_netdij() { return net_dij; }
 
-	/**g_percdij függvény.
-	*unsigned int  visszatérésű, nincs paramétere.
+	/**
+	*nincs paramétere.
 	@return percdíj.
 	*/
 	unsigned int g_percdij() { return perc_dij; }

@@ -1,11 +1,11 @@
-Ôªø/*********************************
+/*********************************
 Memoriaszivargas-detektor
 Keszitette: Peregi Tamas, BME IIT, 2011
             petamas@iit.bme.hu
 Kanari:     Szeberenyi Imre, 2013.,
-VS 2012:    Szeber√©nyi Imre, 2015.,
+VS 2012:    SzeberÈnyi Imre, 2015.,
 mem_dump:   2016.
-inclue-ok:  2017.
+inclue-ok:  2017., 2018.
 *********************************/
 
 #ifndef MEMTRACE_H
@@ -13,15 +13,15 @@ inclue-ok:  2017.
 
 #if defined(MEMTRACE)
 
-/*ha defini√°lva van, akkor a hibakat ebbe a fajlba √≠rja, egy√©bkent stderr-re*/
-//#define MEMTRACE_ERRFILE MEMTRACE.ERR
+/*ha defini·lva van, akkor a hibakat ebbe a fajlba Ìrja, egyÈbkent stderr-re*/
+/*#define MEMTRACE_ERRFILE MEMTRACE.ERR*/
 
 /*ha definialva van, akkor futas kozben lancolt listat epit. Javasolt a hasznalata*/
 #define MEMTRACE_TO_MEMORY
 
 /*ha definialva van, akkor futas kozben fajlba irja a foglalasokat*/
 /*ekkor nincs ellenorzes, csak naplozas*/
-//#define MEMTRACE_TO_FILE
+/*#define MEMTRACE_TO_FILE*/
 
 /*ha definialva van, akkor a megallaskor automatikus riport keszul */
 #define MEMTRACE_AUTO
@@ -61,26 +61,39 @@ inclue-ok:  2017.
 #endif
 
 #ifdef __cplusplus
-	#define START_NAMESPACE namespace memtrace {
-	#define END_NAMESPACE } /*namespace*/
-	#define TRACEC(func) memtrace::func
-	#include <new>
-#else
-	#define START_NAMESPACE
-	#define END_NAMESPACE
-	#define TRACEC(func) func
-#endif
-
-/* A Visual Studio figyelmen kivul hagyja a "throw" deklaraciokat, a gcc -pedantic pedig igenyli.*/
-#ifdef _MSC_VER
-	/* Ha studio */
-	#define THROW_BADALLOC
+    #define START_NAMESPACE namespace memtrace {
+    #define END_NAMESPACE } /*namespace*/
+    #define TRACEC(func) memtrace::func
+    #include <new>
+    // THROW deklar·ciÛ v·ltozatai
+    #if defined(_MSC_VER)
+    // VS rosszul kezeli az __cplusplus makrot
+      #if _MSC_VER < 1900
+        // * nem biztos, hogy jÛ Ìgy *
+   	#define THROW_BADALLOC
 	#define THROW_NOTHING
-#else
-	/* Normalis forditok */
+      #else
+        // C++11 vagy ˙jabb
+	#define THROW_BADALLOC noxcept(false)
+	#define THROW_NOTHING noexcept
+      #endif
+    #else
+      #if __cplusplus < 201103L
+	// C++2003 vagy rÈgebbi
 	#define THROW_BADALLOC throw (std::bad_alloc)
 	#define THROW_NOTHING throw ()
+      #else
+        // C++11 vagy ˙jabb
+	#define THROW_BADALLOC noexcept(false)
+	#define THROW_NOTHING noexcept
+      #endif
+    #endif
+#else
+    #define START_NAMESPACE
+    #define END_NAMESPACE
+    #define TRACEC(func) func
 #endif
+
 
 START_NAMESPACE
 	int allocated_blocks();
@@ -131,11 +144,15 @@ END_NAMESPACE
 #include <stdlib.h>
 #ifdef __cplusplus
 	#include <iostream>
-/* ide gy≈±jtj√ºk a nemtrace-vel √∂sszeakad√≥ headereket, hogy el≈ëbb legyenek */
+/* ide gy˚jtj¸k a nemtrace-vel ˆsszeakadÛ headereket, hogy elıbb legyenek */
 
-	#include <fstream>  // VS 2013 headerj√©ben van deleted definici√≥
+	#include <fstream>  // VS 2013 headerjÈben van deleted definiciÛ
+	#include <sstream>
 	#include <vector>
+	#include <list>
+	#include <map>
 	#include <algorithm>
+	#include <functional>
 #endif
 #ifdef MEMTRACE_CPP
 	namespace std {
@@ -161,7 +178,7 @@ START_NAMESPACE
 	#define realloc(old,size) TRACEC(traced_realloc)(old,size,#size,__LINE__,__FILE__)
 	void * traced_realloc(void * old, size_t size, const char *size_txt, int line, const char * file);
 
-	void mem_dump(void const *mem, size_t size);
+	void mem_dump(void const *mem, size_t size, FILE* fp);
 
 
 END_NAMESPACE
@@ -183,13 +200,12 @@ void * operator new[](size_t size) THROW_BADALLOC;
 void operator delete(void * p)  THROW_NOTHING;
 void operator delete[](void * p) THROW_NOTHING;
 
-/* Visual C++ 2012 miatt kell, mert h√°klis, hogy nincs megfelel≈ë delete, b√°r senki sem haszn√°lja */
+/* Visual C++ 2012 miatt kell, mert h·klis, hogy nincs megfelelı delete, b·r senki sem haszn·lja */
 void operator delete(void *p, int, const char *) THROW_NOTHING;
 void operator delete[](void *p, int, const char *) THROW_NOTHING;
 
 
 #define new new(__LINE__, __FILE__)
-
 #define delete memtrace::set_delete_call(__LINE__, __FILE__),delete
 
 #ifdef CPORTA

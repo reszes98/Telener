@@ -6,7 +6,7 @@
 #include <fstream>
 
 /**
-@class elofizetestar, az előfizetéseket tárolja egy fix méretű tömbbe pointerelve.
+* Az előfizetéseket tárolja egy dinamikus méretű tömbbe pointerelve.
 */
 class elofizetestar{
 	/**Privát változó. tar változó méretét tároljuk benne*/
@@ -21,31 +21,30 @@ class elofizetestar{
 	/**Másoló konstruktor. TILTVA, a tömb miatt nem lehetséges implicit másolása.*/
 	elofizetestar(const elofizetestar&);
 public:
-	/**Default konstruktor. Adattag nélkül hívható, az adatokat később töltjük bele.*/
+	/**@brief Konstruktor. Adattag nélkül hívható, az adatokat később töltjük bele.*/
 	elofizetestar(size_t meret) :meret(meret) { elem = 0; tar = new elofizetes*[meret]; }
 
-	/**size függvény.
-	*size_t  visszatérésű függvény, nincs paramétere.
-		@return aktuálisan felhasznált méret.*/
+	/**
+	*@brief meghatározza a következő elem helyét a tárolóban.
+	*@return aktuálisan felhasznált méret, size_t formátumban.*/
 	size_t size() { return elem; }
 
-	/**capacity függvény
-	*size_t  visszatérésű, nincs paramétere.
-	@return tároló mérete.*/
+	/**
+	*@brief meghatározza a tároló aktuális méretét.
+	*@return tároló mérete, size_t formátumban.*/
 	size_t capacity() { return meret; }
 
-	/**operátor[] átdefiniálás. Tömb címzése kivülről*/
+	/**@brief operátor[] átdefiniálás. Tömb címzése kivülről
+	*Ellenőrzi a helyes indexelést.*/
 	elofizetes* operator[](unsigned int idx)
 	{ 
-		if (idx > meret)
+		if (idx > meret || idx<0)
 			throw("rossz index");
 		else 
 			return tar[idx]; 
 	}
-	/**add függvény.
-	Visszatérés nélküli.
-	@param elofizetes*
-	* a tömbhöz hozzáadd elofizetes elemet, amennyiben van hely, ha nincs jelez.*/
+	/**
+	* @brief a tömbhöz hozzáadd elofizetes elemet, amennyiben van hely, ha nincs növeli a tároló nagyságát.*/
 	void add(elofizetes *p) 
 	{
 		if (elem < meret)
@@ -74,9 +73,8 @@ public:
 
 		
 		
-	/** olvas függvény.
-	*  visszatérés nélküli függvény.
-	* fájlból olvas adatokat be, az add függvény segítségével egyből hozzá is adja a tömbhöz.*/
+	/** 
+	*  @brief visszatérés nélküli függvény, ájlból olvas adatokat be, az add függvény segítségével egyből hozzá is adja a tömbhöz.*/
 	void olvas()//filebol olvassa be az ugyfeleket
 	{
 		std::ifstream file("ugyfel.txt");
@@ -141,10 +139,9 @@ public:
 
 	}
 
-	/**keres függvény.
-	@param string
-	@return elofizetes*
-	*a stringként kapott telefonszámot kikeresi a számlák közül, és kiírja, ha talált ilyet.
+	/**
+	*@brief a stringként kapott telefonszámot kikeresi a számlák közül, és kiírja, ha talált ilyet.
+	*@return elofizetes*
 	*/
 	elofizetes* keres(std::string keresett)// a lancolt listaban keres telefonszam alapjan
 	{
@@ -160,8 +157,8 @@ public:
 		return NULL;
 	}
 
-	/**mindki függvény.
-	*Az összes a tárban lévő ügyfelet kiírja a konzolra.*/
+	/**
+	*@brief Az összes a tárban lévő ügyfelet kiírja a konzolra.*/
 	void mindki()
 	{
 		for (size_t i = 0; i < elem; i++)

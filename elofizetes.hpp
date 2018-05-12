@@ -5,18 +5,16 @@
 #include "tarifa.hpp"
 #include"ugyfel.hpp"
 /**
-@class elofizetes, a tarifa és ügyfél osztályok örökléséből jött létre. Itt rendszerezzük az adatokat.
+*Az ügyfél és a tarifa adatokat csoportosítjuk.
 */
-// tagváltozóként
 class elofizetes  {
-	ugyfel u;
-	tarifa t;
+	
+	ugyfel u;///<Ügyfél adatai.
+	tarifa t;///<Tarifa adatai.
 public:
 	
 	/**
-	*Konstruktor.
-	@param ugyfél osztály
-	@param tarifa osztály
+	*Konstruktor. Paraméterrel hívható csak.
 	*/
 	elofizetes(const ugyfel u,const tarifa t):u(u), t(t){}
 	
@@ -24,14 +22,17 @@ public:
 	*Szabvány paraméter nélküli Destruktor
 	*/
 	~elofizetes() {}
-
+	/**@brief  Ügyfél adatait hívja elő.
+	*@return ugyfel&.
+	*/
 	ugyfel& get_u() { return u; }
 
+	/**@brief Paraméter nélküli, tarifa adatait hívja elő.
+	@return tarifa&*/
 	tarifa& get_t() { return t; }
-	/**sum függvény.
-	*int visszatérésű, nincs paramétere.
-	*Összeszámolja a számla végösszegét.
-	@return Számla végösszege.
+	/**
+	*@brief Összeszámolja a számla végösszegét.
+	@return Számla végösszege, int típusban.
 	*/
 	int sum()
 	{
@@ -45,8 +46,8 @@ public:
 		return sum;
 
 	}
-	/**kiir függvény.
-	* visszatérés nélküli, nincs paramétere.
+	/**
+	* @brief visszatérés nélküli, nincs paramétere.
 	* Kiírja az ügyfél adatait a konzolra.
 	*/
 	void kiir() 

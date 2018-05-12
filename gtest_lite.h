@@ -6,7 +6,7 @@
  *
  * Google gtest keretrendszerhez hasonló rendszer.
  * Sz.I. 2015., 2016., 2017. (_Has_X)
- * Sz.I. 2018 (template), ENDM
+ * Sz.I. 2018 (template), ENDM, ENDMsg
  *
  * A tesztelés legalapvetőbb funkcióit támogató függvények és makrók.
  * Nem szálbiztos megvalósítás.
@@ -58,11 +58,14 @@
 /// Teszteset vége.
 #define END gtest_lite::test.end(); }
 
-#ifdef MEMTRACE
 /// Teszteset vége allokált blokkok számának összehasonlításával
 /// Ez az ellenőrzés nem bomba biztos.
 #define ENDM gtest_lite::test.end(true); }
-#endif
+
+/// Teszteset vége allokált blokkok számának összehasonlításával
+/// Ez az ellenőrzés nem bomba biztos.
+/// Ha hiba van kiírja az üzenetet.
+#define ENDMsg(t) gtest_lite::test.end(true) << t << std::endl; }
 
 // Eredmények vizsgálatát segítő makrók.
 // A paraméterek és a funkciók a gtest keretrendszerrel megegyeznek.
@@ -75,22 +78,22 @@
 
 /// Azonosságot elváró makró
 
-#define EXPECT_EQ(expected, actual) gtest_lite::EXPECT_(expected, actual, gtest_lite::eq, __FILE__, __LINE__, "EXPECT_EQ(" #expected "," #actual ")" )
+#define EXPECT_EQ(expected, actual) gtest_lite::EXPECT_(expected, actual, gtest_lite::eq, __FILE__, __LINE__, "EXPECT_EQ(" #expected ", " #actual ")" )
 
 /// Eltérést elváró makró
-#define EXPECT_NE(expected, actual) gtest_lite::EXPECT_(expected, actual, gtest_lite::ne, __FILE__, __LINE__, "EXPECT_NE(" #expected "," #actual ")" )
+#define EXPECT_NE(expected, actual) gtest_lite::EXPECT_(expected, actual, gtest_lite::ne, __FILE__, __LINE__, "EXPECT_NE(" #expected ", " #actual ")", "etalon" )
 
 /// Kisebb, vagy egyenlő relációt elváró makró
-#define EXPECT_LE(expected, actual) gtest_lite::EXPECT_(expected, actual, gtest_lite::le, __FILE__, __LINE__, "EXPECT_LE(" #expected "," #actual ")" )
+#define EXPECT_LE(expected, actual) gtest_lite::EXPECT_(expected, actual, gtest_lite::le, __FILE__, __LINE__, "EXPECT_LE(" #expected ", " #actual ")", "etalon" )
 
 /// Kisebb, mint relációt elváró makró
-#define EXPECT_LT(expected, actual) gtest_lite::EXPECT_(expected, actual, gtest_lite::lt, __FILE__, __LINE__, "EXPECT_LT(" #expected "," #actual ")" )
+#define EXPECT_LT(expected, actual) gtest_lite::EXPECT_(expected, actual, gtest_lite::lt, __FILE__, __LINE__, "EXPECT_LT(" #expected ", " #actual ")", "etalon" )
 
 /// Nagyobb, vagy egyenlő relációt elváró makró
-#define EXPECT_GE(expected, actual) gtest_lite::EXPECT_(expected, actual, gtest_lite::ge, __FILE__, __LINE__, "EXPECT_GE(" #expected "," #actual ")" )
+#define EXPECT_GE(expected, actual) gtest_lite::EXPECT_(expected, actual, gtest_lite::ge, __FILE__, __LINE__, "EXPECT_GE(" #expected ", " #actual ")", "etalon" )
 
 /// Nagyobb, mint relációt elváró makró
-#define EXPECT_GT(expected, actual) gtest_lite::EXPECT_(expected, actual, gtest_lite::gt, __FILE__, __LINE__, "EXPECT_GT(" #expected "," #actual ")" )
+#define EXPECT_GT(expected, actual) gtest_lite::EXPECT_(expected, actual, gtest_lite::gt, __FILE__, __LINE__, "EXPECT_GT(" #expected ", " #actual ")", "etalon" )
 
 /// Igaz értéket elváró makró
 #define EXPECT_TRUE(actual)  gtest_lite::EXPECT_(true, actual,  gtest_lite::eq, __FILE__, __LINE__, "EXPECT_TRUE(" #actual ")" )
@@ -99,16 +102,16 @@
 #define EXPECT_FALSE(actual) gtest_lite::EXPECT_(false, actual, gtest_lite::eq, __FILE__, __LINE__, "EXPECT_FALSE(" #actual ")" )
 
 /// Valós számok azonosságát elváró makró
-#define EXPECT_FLOAT_EQ(expected, actual)  gtest_lite::EXPECT_(expected, actual, gtest_lite::almostEQ, __FILE__, __LINE__, "EXPECT_FLOAT_EQ(" #expected "," #actual ")" )
+#define EXPECT_FLOAT_EQ(expected, actual)  gtest_lite::EXPECT_(expected, actual, gtest_lite::almostEQ, __FILE__, __LINE__, "EXPECT_FLOAT_EQ(" #expected ", " #actual ")" )
 
 /// Valós számok azonosságát elváró makró
-#define EXPECT_DOUBLE_EQ(expected, actual) gtest_lite::EXPECT_(expected, actual, gtest_lite::almostEQ, __FILE__, __LINE__, "EXPECT_DOUBLE_EQ(" #expected "," #actual ")" )
+#define EXPECT_DOUBLE_EQ(expected, actual) gtest_lite::EXPECT_(expected, actual, gtest_lite::almostEQ, __FILE__, __LINE__, "EXPECT_DOUBLE_EQ(" #expected ", " #actual ")" )
 
 /// C stringek (const char *) azonosságát tesztelő makró
-#define EXPECT_STREQ(expected, actual) gtest_lite::EXPECTSTR(expected, actual, gtest_lite::eqstr, __FILE__, __LINE__, "EXPECT_STREQ(" #expected "," #actual ")" )
+#define EXPECT_STREQ(expected, actual) gtest_lite::EXPECTSTR(expected, actual, gtest_lite::eqstr, __FILE__, __LINE__, "EXPECT_STREQ(" #expected ", " #actual ")" )
 
 /// C stringek (const char *) eltéréset tesztelő makró
-#define EXPECT_STRNE(expected, actual) gtest_lite::EXPECTSTR(expected, actual, gtest_lite::nestr, __FILE__, __LINE__, "EXPECT_STRNE(" #expected "," #actual ")" )
+#define EXPECT_STRNE(expected, actual) gtest_lite::EXPECTSTR(expected, actual, gtest_lite::nestr, __FILE__, __LINE__, "EXPECT_STRNE(" #expected ", " #actual ")", "etalon" )
 
 /// Kivételt várunk
 #define EXPECT_THROW(statement, exception_type) try { gtest_lite::test.tmp = false; statement; } \
@@ -116,19 +119,32 @@
     catch (...) { } \
     EXPECTTHROW(statement, "kivetelt dob.", "nem dobott '"#exception_type"' kivetelt.")
 
-/// Kivételt várunk és továbbdobjuk -- ilyen nincs a gtest-ben
-#define EXPECT_THROW_THROW(statement, exception_type) try { gtest_lite::test.tmp = false; statement; } \
-    catch (exception_type) { gtest_lite::test.tmp = true; throw; } \
-    EXPECTTHROW(statement, "kivetelt dob.", "nem dobott '"#exception_type"' kivetelt.")
+/// Kivételt várunk
+#define EXPECT_ANY_THROW(statement) try { gtest_lite::test.tmp = false; statement; } \
+    catch (...) { gtest_lite::test.tmp = true; } \
+    EXPECTTHROW(statement, "kivetelt dob.", "nem dobott kivetelt.")
 
 /// Nem várunk kivételt
 #define EXPECT_NO_THROW(statement) try { gtest_lite::test.tmp = true; statement; } \
     catch (...) { gtest_lite::test.tmp = false; }\
     EXPECTTHROW(statement, "nem dob kivetelt.", "kivetelt dobott.")
 
-/// Segédmakró egy adattag, vagy tagfüggvény létezésének tesztelésére futási időben
+/// Nem várunk kivételt gtest kompatibilitás miatt
+#define ASSERT_NO_THROW(statement) try { gtest_lite::test.tmp = true; statement; } \
+    catch (...) { gtest_lite::test.tmp = false; }\
+    EXPECTTHROW(statement, "nem dob kivetelt.", "kivetelt dobott.")
+
+/// Kivételt várunk és továbbdobjuk -- ilyen nincs a gtest-ben
+#define EXPECT_THROW_THROW(statement, exception_type) try { gtest_lite::test.tmp = false; statement; } \
+    catch (exception_type) { gtest_lite::test.tmp = true; throw; } \
+    EXPECTTHROW(statement, "kivetelt dob.", "nem dobott '"#exception_type"' kivetelt.")
+
+/// Segédmakró egy adattag, vagy tagfüggvény létezésének tesztelésére FUTÁSI időben
 /// Ötlet:
 /// https://cpptalk.wordpress.com/2009/09/12/substitution-failure-is-not-an-error-2
+/// Használat:
+/// CREATE_Has_(size)
+/// ... if (Has_size<std::string>::member)...
 #define CREATE_Has_(X) \
 template<typename T> struct _Has_##X {  \
     struct Fallback { int X; };         \
@@ -139,10 +155,17 @@ template<typename T> struct _Has_##X {  \
     static bool const member = sizeof(f<Derived>(0)) == 2; \
 };
 
-/// Segédfüggvény egy publikus adattag, vagy tagfüggvény létezésének tesztelésére fordítási időben
-inline
+/// Segédfüggvény egy publikus adattag, vagy tagfüggvény létezésének tesztelésére
+/// fordítási időben
 void hasMember(...) {}
 
+/// Segédsablon típuskonverzió futás közbeni ellenőrzésere
+template <typename F, typename T>
+struct _Is_Types {
+    template<typename D> static char (&f(D*))[1];
+    template<typename D> static char (&f(...))[2];
+    static bool const convertable = sizeof(f<T>(F())) == 1;
+};
 
 /// -----------------------------------
 /// Belső megvalósításhoz tartozó makrók, és osztályok.
@@ -197,17 +220,21 @@ struct Test {
         ++sum;
     }
     /// Teszt vége
-    void end(bool memchk = false) {
+    std::ostream& end(bool memchk = false) {
 #ifdef MEMTRACE
         if (memchk && ablocks != memtrace::allocated_blocks()) {
             status = false;
-            std::cerr << "** Lehet, hogy nem szabaditott fel minden memoriat! **" << std::endl;
+            return std::cerr << "** Lehet, hogy nem szabaditott fel minden memoriat! **" << std::endl;
         }
 #endif
 #ifdef CPORTA
         if (!status)
 #endif // CPORTA
             std::cerr << (status ? "     SIKERES" : "** HIBAS ****") << "\t" << name << " <---" << std::endl;
+        if (!status)
+            return std::cerr;
+        else
+            return null;
     }
 
     bool fail() { return failed; }
@@ -241,34 +268,50 @@ struct Test {
 static Test test;
 
 /// általános sablon a várt értékhez.
-template <typename T>
-std::ostream& EXPECT_(T exp, T act, bool (*pred)(T, T), const char *file, int line, const char *expr) {
+template <typename T1, typename T2>
+std::ostream& EXPECT_(T1 exp, T2 act, bool (*pred)(T1, T2), const char *file, int line,
+                      const char *expr, const char *lhs = "elvart", const char *rhs = "aktual") {
     return test.expect(pred(exp, act), file, line, expr)
-        << "** elvart: " << std::boolalpha << exp
-        << "\n** aktual: " << std::boolalpha << act << std::endl;
+        << "** " << lhs << ": " << std::boolalpha << exp
+        << "\n** " << rhs << ": " << std::boolalpha << act << std::endl;
 }
 
 /// pointerre specializált sablon a várt értékhez.
-template <typename T>
-std::ostream& EXPECT_(T* exp, T* act, bool (*pred)(T*, T*), const char *file, int line, const char *expr) {
+template <typename T1, typename T2>
+std::ostream& EXPECT_(T1* exp, T2* act, bool (*pred)(T1*, T2*), const char *file, int line,
+                      const char *expr, const char *lhs = "elvart", const char *rhs = "aktual") {
     return test.expect(pred(exp, act), file, line, expr)
-        << "** elvart: " << (void*) exp
-        << "\n** aktual: " << (void*) act << std::endl;
+        << "** " << lhs << ": " << (void*) exp
+        << "\n** " << rhs << ": " << (void*) act << std::endl;
 }
+
+#if __cplusplus >= 201103L
+/// nullptr-re specializált sablon a várt értékhez.
+template <typename T1>
+std::ostream& EXPECT_(T1* exp, std::nullptr_t act, bool (*pred)(T1*, std::nullptr_t), const char *file, int line,
+                      const char *expr, const char *lhs = "elvart", const char *rhs = "aktual") {
+    return test.expect(pred(exp, act), file, line, expr)
+        << "** " << lhs << ": " << (void*) exp
+        << "\n** " << rhs << ": " << (void*) act << std::endl;
+}
+#endif
+
+
 
 /// stringek összehasonlításához.
 /// azért nem spec. mert a sima EQ-ra másként kell működnie.
 inline
-std::ostream& EXPECTSTR(const char *exp, const char *act, bool (*pred)(const char*, const char*), const char *file, int line, const char *expr) {
+std::ostream& EXPECTSTR(const char *exp, const char *act, bool (*pred)(const char*, const char*), const char *file, int line,
+                      const char *expr, const char *lhs = "elvart", const char *rhs = "aktual") {
     return test.expect(pred(exp, act), file, line, expr)
-        << "** elvart: " << (exp == NULL ? "NULL pointer" : std::string("\"") + exp + std::string("\""))
-        << "\n** aktual: " << (act == NULL ? "NULL pointer" : std::string("\"") + act + std::string("\"")) << std::endl;
+        << "** " << lhs << ": " << (exp == NULL ? "NULL pointer" : std::string("\"") + exp + std::string("\""))
+        << "\n** " << rhs << ": " << (act == NULL ? "NULL pointer" : std::string("\"") + act + std::string("\"")) << std::endl;
 }
 
 /// segéd sablonok a relációkhoz.
 /// azért nem STL (algorithm), mert csak a függvény lehet, hogy menjen a deduckció
-template <typename T>
-bool eq(T a, T b) { return a == b; }
+template <typename T1, typename T2>
+bool eq(T1 a, T2 b) { return a == b; }
 
 inline
 bool eqstr(const char *a, const char *b) {
@@ -277,8 +320,8 @@ bool eqstr(const char *a, const char *b) {
     return false;
 }
 
-template <typename T>
-bool ne(T a, T b) { return a != b; }
+template <typename T1, typename T2>
+bool ne(T1 a, T2 b) { return a != b; }
 
 inline
 bool nestr(const char *a, const char *b) {
@@ -287,17 +330,17 @@ bool nestr(const char *a, const char *b) {
     return false;
 }
 
-template <typename T>
-bool le(T a, T b) { return a <= b; }
+template <typename T1, typename T2>
+bool le(T1 a, T2 b) { return a <= b; }
 
-template <typename T>
-bool lt(T a, T b) { return a < b; }
+template <typename T1, typename T2>
+bool lt(T1 a, T2 b) { return a < b; }
 
-template <typename T>
-bool ge(T a, T b) { return a >= b; }
+template <typename T1, typename T2>
+bool ge(T1 a, T2 b) { return a >= b; }
 
-template <typename T>
-bool gt(T a, T b) { return a > b; }
+template <typename T1, typename T2>
+bool gt(T1 a, T2 b) { return a > b; }
 
 /// Segédsablon valós számok összehasonlításához
 /// Nem bombabiztos, de nekünk most jó lesz

@@ -6,9 +6,7 @@
 #include "elofizetes.hpp"
 #include "elofizetestar.hpp"
 #include "fgv.h"
-/**Menü függvény.
-*Visszatérés, és paraméter nélküli.
-*A menü függvények első példánya, a többit ez a függvény fogja hívni.*/
+
 void menu()
 {
 	std::cout << "Udv a Telener rendszereben" << std::endl << "Mit szeretnel csinalni?" << std::endl;
@@ -25,8 +23,7 @@ void menu()
 
 }
 
-/**Menu1 függvény.
-*Visszatérés, és paraméter nélküli.*/
+
 void menu1()
 {
 
@@ -64,10 +61,7 @@ void menu1()
 		std::cout << "---------------------------------------------------" << std::endl;
 	}
 }
-/**Menu2 függvény.
-*Visszatérés nélküli.
-@param előfizetés *
-*/
+
 void menu2(elofizetes* e)
 {
 	if (e == NULL)
