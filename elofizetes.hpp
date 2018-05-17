@@ -2,6 +2,8 @@
 #define ELOFIZETES_HPP
 
 
+//#include "memtrace.h"
+//#include <vld.h>
 #include "tarifa.hpp"
 #include"ugyfel.hpp"
 /**

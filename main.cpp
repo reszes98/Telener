@@ -1,17 +1,20 @@
 ﻿
 #include <iostream>
-#include "tarifa.hpp"
-#include "ugyfel.hpp"
 #include <fstream>
 #include <string>
-//#include <sstream>>
+#include "memtrace.h"
+//#include <vld.h>
+#include "tarifa.hpp"
+#include "ugyfel.hpp"
+
+
 #include "elofizetes.hpp"
 #include "elofizetestar.hpp"
 #include "gtest_lite.h"
-#include "memtrace.h"
+
 #include "fgv.h"
 
-#define CPORTA
+//#define CPORTA
 
 
 #ifdef CPORTA
@@ -29,6 +32,8 @@ void teszt()//teszteli a beolvasas eredmenyet, az elso 2 ugyfelre
 		t1.olvas();
 		a = t1.capacity();
 		EXPECT_EQ(4, a);
+		t1.mindki();
+		
 	}ENDM
 
 	TEST(test2, beolvasas)
@@ -78,6 +83,8 @@ int main()
 #endif // CPORTA
 #ifndef CPORTA
 int main()
+
+
 {
 	try {
 		menu();
@@ -86,7 +93,9 @@ int main()
 	std::cout << "sikeresen kilepett a programbol!(egy enter meg kell)" << std::endl;
 	std::cin.get();
 	std::cin.get();
+	
 	return 0;
+	
 }
 #endif // !CPORTA
 

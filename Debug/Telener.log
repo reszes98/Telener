@@ -1,28 +1,6 @@
 ﻿  fgv.cpp
   main.cpp
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.h(196): error C3646: 'noxcept': unknown override specifier
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.h(196): error C2059: syntax error: '('
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.h(197): error C3646: 'noxcept': unknown override specifier
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.h(197): error C2059: syntax error: '('
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.h(198): error C3646: 'noxcept': unknown override specifier
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.h(198): error C2059: syntax error: '('
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.h(199): error C3646: 'noxcept': unknown override specifier
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.h(199): error C2059: syntax error: '('
-  memtrace.cpp
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.cpp(466): error C3646: 'noxcept': unknown override specifier
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.cpp(466): error C2059: syntax error: '('
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.cpp(466): error C2143: syntax error: missing ';' before '{'
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.cpp(466): error C2447: '{': missing function header (old-style formal list?)
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.cpp(470): error C3646: 'noxcept': unknown override specifier
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.cpp(470): error C2059: syntax error: '('
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.cpp(470): error C2143: syntax error: missing ';' before '{'
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.cpp(470): error C2447: '{': missing function header (old-style formal list?)
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.cpp(474): error C3646: 'noxcept': unknown override specifier
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.cpp(474): error C2059: syntax error: '('
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.cpp(474): error C2143: syntax error: missing ';' before '{'
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.cpp(474): error C2447: '{': missing function header (old-style formal list?)
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.cpp(478): error C3646: 'noxcept': unknown override specifier
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.cpp(478): error C2059: syntax error: '('
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.cpp(478): error C2143: syntax error: missing ';' before '{'
-d:\suli\bme\infocpp\hw\telener\telener\memtrace.cpp(478): error C2447: '{': missing function header (old-style formal list?)
+d:\suli\bme\infocpp\hw\telener\telener\memtrace.h(12): warning C4005: 'MEMTRACE': macro redefinition
+  d:\suli\bme\infocpp\hw\telener\telener\memtrace.h(12): note: command-line arguments:  see previous definition of 'MEMTRACE'
   Generating Code...
+  Telener.vcxproj -> D:\suli\BME\infocpp\hw\Telener\Debug\Telener.exe

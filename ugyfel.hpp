@@ -3,6 +3,9 @@
 
 
 #include <string>
+
+//#include "memtrace.h"
+//#include <vld.h>
 /**
   Itt tároljuk az ügyfelek adatait.
  */
@@ -28,7 +31,7 @@ public:
 	ugyfel(std::string tel=" ", std::string nev=" ", std::string cim=" ", unsigned int felh_perc=0, unsigned int felh_sms=0, unsigned int felh_net=0)
 		:tel(tel),  nev(nev), cim(cim), felh_perc(felh_perc),  felh_sms(felh_sms), felh_net(felh_net) {}
 	/**Destruktor. Szabvány paraméter nélküli Destruktor*/
-	~ugyfel() {}
+	//~ugyfel() {}
 
 	/**
 	*String& visszatérésű függvény, nincs paramétere.

@@ -3,6 +3,9 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+
+//#include "memtrace.h"
+//#include <vld.h>
 #include "elofizetes.hpp"
 #include "elofizetestar.hpp"
 #include "fgv.h"

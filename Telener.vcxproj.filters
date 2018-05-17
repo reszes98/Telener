@@ -18,10 +18,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="memtrace.cpp">
+    <ClCompile Include="fgv.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fgv.cpp">
+    <ClCompile Include="memtrace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,5 +1,8 @@
 ﻿#ifndef FGV_H
 #define FGV_H
+
+//#include "memtrace.h"
+//#include <vld.h>
 #include "elofizetes.hpp"
 
 
@@ -18,5 +21,8 @@ void menu1();
 @brief a harmadik menü függvény.
 * Ez a telefonszám kereső al menüje, itt tudjuk megnézni az ügyfeleket másik tarifa csomaggal.
 */
-void menu2(elofizetes* k);
+void menu2(elofizetes* e);
+
+
+
 #endif // !FGV_H

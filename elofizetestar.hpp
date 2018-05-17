@@ -1,9 +1,16 @@
 ﻿#ifndef ELOFIZETESTAR
 #define ELOFIZETESTAR
 #include <string>
-#include "elofizetes.hpp"
 #include <iostream>
 #include <fstream>
+#include <sstream>
+
+//#include "memtrace.h"
+//#include <vld.h>
+#include "elofizetes.hpp"
+#include "fgv.h"
+
+
 
 /**
 * Az előfizetéseket tárolja egy dinamikus méretű tömbbe pointerelve.
@@ -71,7 +78,7 @@ public:
 	}
 
 
-		
+	
 		
 	/** 
 	*  @brief visszatérés nélküli függvény, ájlból olvas adatokat be, az add függvény segítségével egyből hozzá is adja a tömbhöz.*/
@@ -82,12 +89,13 @@ public:
 		unsigned int felh_perc, felh_sms, felh_net;
 		if (file.is_open())
 		{
-			while (std::getline(file, line))
+			while (getline(file, line))
 			{
-				size_t i;
+				std::stringstream ss(line);
+				ss >> dij >> tel >> nev >> cim >> felh_perc >> felh_sms>>felh_net;
+				/*size_t i;
 				
 				int k[6] = { 0 }, l = 0;
-				//char* a = line.c_str;
 				for (i=0; i < line.size(); i++)
 				{
 					if (line[i] == ' ')
@@ -104,7 +112,7 @@ public:
 				sscanf(felh.c_str(), "%d", &felh_sms);
 				felh = line.substr(k[5], k[6] - k[5]);
 				sscanf(felh.c_str(), "%d", &felh_net);
-				
+				*/
 				
 				ugyfel u(tel, nev, cim, felh_perc, felh_sms, felh_net);
 				int err = 0;

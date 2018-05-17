@@ -1,6 +1,9 @@
 ﻿#ifndef TARIFA
 #define TARIFA
 
+//#include "memtrace.h"
+
+//#include <vld.h>
 /**
 * A tarifák adatait tároljuk itt.
 */
@@ -33,7 +36,7 @@ public:
 	/**Destruktor.
 	*Szabvány paraméter nélküli Destruktor
 	*/
-	~tarifa() { }
+//	~tarifa() { }
 
 	/**
 	*@brief Beállítja az alapdíjat.
